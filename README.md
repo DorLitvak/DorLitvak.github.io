@@ -1,3 +1,3 @@
-# DoriLitvak.github.io
+# DorLitvak.github.io
 
 https://dorlitvak.github.io/
