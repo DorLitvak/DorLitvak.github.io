@@ -117,10 +117,26 @@
 							<section id="Publications">
 								<div class="container">
 									<h3>Publications</h3>
+									<div class="topic-filters">
+										<button type="button" class="button small primary" data-filter="all">All</button>
+										<button type="button" class="button alt small" data-filter="alignment">Alignment</button>
+										<button type="button" class="button alt small" data-filter="vision">Vision</button>
+									</div>
 									<div class="features">
-							
-										<article>
-											<a href="https://keqiangsun.github.io/projects/ponymation/" target="_blank" class="image"><img src="images/ponymation.gif" alt="" /></a>
+
+										<article data-topic="alignment">
+											<a href="https://arxiv.org/abs/2607.14250" target="_blank" class="image"><img src="images/severance_poster.png" alt="" onmouseover="this.src='images/severance.gif'" onmouseout="this.src='images/severance_poster.png'" /></a>
+											<div class="inner">
+												<h4><a href="https://arxiv.org/abs/2607.14250" target="_blank">🌓 The Severance Problem: LLMs are Unaware of the Person Beyond the Prompt.</a></h4>
+												<b>Litvak</b>, Liu, arXiv preprint, 2026.<br>
+												<p><a href="https://arxiv.org/abs/2607.14250" target="_blank"> [Paper]</a>
+												<a href="https://github.com/HumainLab/severance" target="_blank"> [Code]</a></p>
+
+											</div>
+										</article>
+
+										<article data-topic="vision">
+											<a href="https://keqiangsun.github.io/projects/ponymation/" target="_blank" class="image"><img src="images/ponymation_poster.png" alt="" onmouseover="this.src='images/ponymation.gif'" onmouseout="this.src='images/ponymation_poster.png'" /></a>
 											<div class="inner">
 												<h4><a href="https://keqiangsun.github.io/projects/ponymation/" target="_blank">🐎 Ponymation: Learning 3D Animal Motions from Unlabeled Online Videos.</a></h4>
 												Sun*, <b>Litvak*</b>, Zhang, Li, Wu†, Wu†, ECCV, 2025.<br>
@@ -131,8 +147,8 @@
 											</div>
 										</article>
 										
-										<article>
-											<a href="https://kyleleey.github.io/3DFauna/" target="_blank" class="image"><img src="images/2024Fauna_Li.gif" alt="" /></a>
+										<article data-topic="vision">
+											<a href="https://kyleleey.github.io/3DFauna/" target="_blank" class="image"><img src="images/2024Fauna_Li_poster.png" alt="" onmouseover="this.src='images/2024Fauna_Li.gif'" onmouseout="this.src='images/2024Fauna_Li_poster.png'" /></a>
 											<div class="inner">
 												<h4><a href="https://kyleleey.github.io/3DFauna/" target="_blank">🐏🐕🐁🦌🐘🦒🦓🐆🦘🐄🐖🐈🐅🦝🐎🦬🦙 Learning the 3D Fauna of the Web.</a></h4>
 												Li*, <b>Litvak*</b>, Li, Zhang, Jakab, Rupprecht, Wu†, Vedaldi†, Wu†, CVPR, 2024. <br> 
@@ -143,8 +159,8 @@
 											</div>
 										</article>
 										
-										<article>
-											<a href="" class="image"><img src="images/UMAT_elephants.gif" alt="" /></a>
+										<article data-topic="vision">
+											<a href="" class="image"><img src="images/UMAT_elephants_poster.png" alt="" onmouseover="this.src='images/UMAT_elephants.gif'" onmouseout="this.src='images/UMAT_elephants_poster.png'" /></a>
 											<div class="inner">
 												<h4><a href="">🐘 Unsupervised Online Multiple Animal Tracking.</a></h4>
 												<b>Litvak</b>, Dinari, Freifeld, CV4Animals Workshop, CVPR 2022.<br>
@@ -153,8 +169,8 @@
 											</div>
 										</article>
 
-										<article>
-											<a href="" class="image"><img src="images/tennis_gif.gif" alt="" /></a>
+										<article data-topic="vision">
+											<a href="" class="image"><img src="images/tennis_gif_poster.png" alt="" onmouseover="this.src='images/tennis_gif.gif'" onmouseout="this.src='images/tennis_gif_poster.png'" /></a>
 											<div class="inner">
 												<h4><a href="https://github.com/BGU-CS-VIL/JA-POLS" target="_blank">🎾 JA-POLS: a Moving-camera Background Model via Joint Alignment and Partially-overlapping Local Subspaces.</a></h4>
 												<p>Chelly, Winter, <b>Litvak</b>, Rosen, Freifeld, CVPR 2020.<br>
@@ -218,6 +234,28 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+				(function () {
+					var buttons = document.querySelectorAll('.topic-filters [data-filter]');
+					var articles = document.querySelectorAll('#Publications article[data-topic]');
+
+					buttons.forEach(function (btn) {
+						btn.addEventListener('click', function () {
+							var filter = btn.getAttribute('data-filter');
+
+							buttons.forEach(function (b) {
+								b.classList.toggle('primary', b === btn);
+								b.classList.toggle('alt', b !== btn);
+							});
+
+							articles.forEach(function (article) {
+								var show = filter === 'all' || article.getAttribute('data-topic') === filter;
+								article.hidden = !show;
+							});
+						});
+					});
+				})();
+			</script>
 
 	</body>
 </html>

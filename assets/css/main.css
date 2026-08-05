@@ -3426,3 +3426,23 @@ a:hover, a:focus, a:visited, a:active {
 	opacity: 1;
 	visibility: visible;
 }
+
+.topic-filters {
+	margin-bottom: 1.5em;
+}
+.topic-filters .button {
+	margin-right: 0.5em;
+	padding: 0 1.1em;
+}
+.topic-filters .button.primary {
+	background-color: #7ea4a6;
+}
+.topic-filters .button.primary:hover {
+	background-color: #8fb2b4;
+}
+.topic-filters .button.primary:active {
+	background-color: #6f9294;
+}
+.features article[hidden] {
+	display: none;
+}
