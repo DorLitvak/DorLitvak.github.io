@@ -2810,6 +2810,7 @@ input, select, textarea {
 
 	#wrapper {
 		background: #fff;
+		padding-left: 18em; /* clear the fixed 18em #header sidebar */
 		padding-right: 0;
 	}
 
@@ -3446,3 +3447,203 @@ a:hover, a:focus, a:visited, a:active {
 .features article[hidden] {
 	display: none;
 }
+/* Tablet/phone: show the sidebar as a compact header at the top of the page
+   (photo on the left, name/info/icons on the right, small pill section links
+   below) instead of hiding it in the slide-out panel. Same colours and type
+   as the desktop sidebar. */
+
+	@media screen and (max-width: 1024px) {
+
+		#titleBar {
+			display: none;
+		}
+
+		#header,
+		body.header-visible #header {
+			display: grid;
+			grid-template-columns: auto auto;
+			grid-template-areas:
+				"photo name"
+				"photo sub"
+				"photo topic"
+				"photo icons"
+				"nav   nav";
+			justify-content: center;
+			align-content: start;
+			column-gap: 1.25em;
+			position: relative;
+			width: 100%;
+			height: auto;
+			overflow: visible;
+			left: auto;
+			right: auto;
+			padding: 1.25em 1em 1em 1em;
+			text-align: left;
+			transform: none;
+			transition: none;
+		}
+
+			/* Let the photo, name and text lines sit directly in the grid. */
+			#header > header {
+				display: contents;
+			}
+
+				#header > header .avatar {
+					grid-area: photo;
+					align-self: center;
+					width: 6.5em;
+					margin: 0;
+				}
+
+				#header > header h1 {
+					grid-area: name;
+					align-self: end;
+					font-size: 1.5em;
+					line-height: 1.2;
+				}
+
+				#header > header p {
+					margin: 0.2em 0 0 0;
+					font-size: 0.85em;
+					line-height: 1.45;
+				}
+
+				#header > header p:nth-of-type(1) {
+					grid-area: sub;
+				}
+
+				#header > header p:nth-of-type(2) {
+					grid-area: topic;
+				}
+
+					/* "Personal AI & Behavioral Alignment" on one line. */
+					#header > header p:nth-of-type(2) br:first-of-type {
+						display: none;
+					}
+
+					#header > header p a[href^="mailto:"] {
+						display: block;
+					}
+
+			#header > footer {
+				grid-area: icons;
+				align-self: start;
+				position: static;
+				width: auto;
+				margin: 0.4em 0 0 0;
+				padding: 0;
+			}
+
+				#header > footer .icons li {
+					padding: 0 0.85em 0 0;
+				}
+
+			#header > nav {
+				grid-area: nav;
+				margin-top: 0.9em;
+			}
+
+				#header > nav ul {
+					display: flex;
+					flex-wrap: wrap;
+					justify-content: center;
+					gap: 0.35em;
+				}
+
+					#header > nav ul li,
+					#header > nav ul li:first-child {
+						border-top: 0;
+					}
+
+						#header > nav ul li a {
+							padding: 0.2em 0.9em;
+							font-size: 0.8em;
+							line-height: 1.8;
+							border-radius: 2em;
+						}
+
+		#wrapper,
+		body.header-visible #wrapper {
+			padding: 0;
+			transform: none;
+		}
+
+	}
+
+	@media screen and (max-width: 360px) {
+
+		#header,
+		body.header-visible #header {
+			column-gap: 0.9em;
+			padding-left: 0.75em;
+			padding-right: 0.75em;
+		}
+
+			#header > header .avatar {
+				width: 5.5em;
+			}
+
+			#header > header p {
+				font-size: 0.8em;
+			}
+
+					#header > nav ul li a {
+						padding: 0.2em 0.65em;
+					}
+
+	}
+
+/* News */
+
+	.news {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+		.news li {
+			display: flex;
+			gap: 1.25em;
+			align-items: baseline;
+			padding: 0.35em 0;
+		}
+
+		.news-date {
+			flex: 0 0 6.5em;
+			color: #7ea4a6;
+			font-weight: 700;
+			font-size: 0.85em;
+			white-space: nowrap;
+		}
+
+		.news-text {
+			flex: 1;
+		}
+
+		.news-tag {
+			display: inline-block;
+			margin-right: 0.4em;
+			padding: 0 0.6em;
+			border-radius: 2em;
+			background: #7ea4a6;
+			color: #fff;
+			font-size: 0.7em;
+			font-weight: 700;
+			letter-spacing: 0.03em;
+			line-height: 1.8;
+			text-transform: uppercase;
+			vertical-align: 0.15em;
+		}
+
+	@media screen and (max-width: 480px) {
+
+		.news li {
+			gap: 0.75em;
+		}
+
+		.news-date {
+			flex-basis: 5.5em;
+			font-size: 0.8em;
+		}
+
+	}
